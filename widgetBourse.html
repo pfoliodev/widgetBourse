@@ -1,0 +1,122 @@
+<!--
+Pour un module, éviter de charger directement JQuery, plutôt indiauer à l'utilisateur qu'il doit inclure JQuery avant de charger le module et lui fournir la ligne ci-dessous directement à copier-coller
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<!-- 
+Bien faire attention aux IDs, ils ne doivent pouvoir correspondre à aucun id d'aucun autre module et d'aucune autre page pour éviter les incompatibilités entre modules. Toujours leur donner un préfixe unique lié au nom de l'entreprise et du module.
+-->
+<div id="irissoftBourseWidgetContainer">
+	<div id="irissoftBourseWidget">
+		<table>
+			<tr>
+				<th>Entreprise</th>
+				<th>Valeur</th>
+			</tr>
+			<tr>
+				<td>GOOG</td>
+				<td id="irisSoftBourseValueGOOG"></td>
+			</tr>
+			<tr>
+				<td>APPL</td>
+				<td id="irisSoftBourseValueAAPL"></td>
+			</tr>
+			<tr>
+				<td>FB</td>
+				<td id="irisSoftBourseValueFB"></td>
+			</tr>
+			<tr>
+				<td>AMZN</td>
+				<td id="irisSoftBourseValueAMZN"></td>
+			</tr>
+			<tr>
+				<td>MSFT</td>
+				<td id="irisSoftBourseValueMSFT"></td>
+			</tr>
+			<tr>
+				<th id="irisSoftBourseLinkback" colspan="2">
+					<a href="http://www.ecoleiris.fr/">Design et conception par Ecole IRIS</a>
+				</th>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript">
+	// Attention à ne réécrire sur aucune variable globale. Tout créer dans un seul objet, une seule variable dont le nom ne sera en conflit avec aucun autre module.
+	var irissoftBourseWidget = {
+		quotes: null, // stockera la réponse du serveur, les infos sur les cotations des entreprises
+
+		/**
+		Chargera en Ajax à partir de notre serveur le fichier json
+		*/
+		loadFinancialData: function() {
+			$.ajax({
+			  method: "GET",
+			  url: 'ajax.php'
+			}).done( // La fonction de callback, qui sera donc exécuté après réception de la réponse ajax
+				function(resp) {
+					var json = JSON.parse(resp);
+					irissoftBourseWidget.quotes = json.list.resources;
+					irissoftBourseWidget.updateFinancialDataDisplay();
+				}
+			);
+		},
+
+		/**
+		Parse le json stocké dans quotes pour envoyer les cotations en dollar dans les bonnes cases du tableau
+		*/
+		updateFinancialDataDisplay: function() {
+			var i = 0;
+			var q = irissoftBourseWidget.quotes;
+			for (i=0; i < q.length; i++) {
+				document.getElementById("irisSoftBourseValue" + q[i].resource.fields.symbol).innerHTML = parseFloat(q[i].resource.fields.price).toFixed(2);
+			}
+		}
+	};
+	
+	irissoftBourseWidget.loadFinancialData();
+	</script>
+
+	<style type="text/css">
+	#irissoftBourseWidget {
+		width: 400px;
+		border: 2px black solid;
+		border-radius: 10px;
+		box-shadow: 10px 10px 5px #888888;
+		padding: 0px;
+		background-color: #dddddd;
+	}
+
+	#irissoftBourseWidget table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	#irissoftBourseWidget table td {
+		min-width: 180px; 
+		padding: 5px 10px;
+	}
+
+	#irissoftBourseWidget table th { 
+		text-align: left;
+		padding: 5px 10px;
+		background-color: black;
+		color: white;
+	}
+
+
+	#irissoftBourseWidget table tr:nth-child(2n) {
+		background-color: #eeeeee;
+	}
+
+	#irissoftBourseWidget th#irisSoftBourseLinkback {
+		text-align: center;
+	}
+
+	#irissoftBourseWidget th#irisSoftBourseLinkback a {
+		color: #eeeeee;
+		text-decoration: none;
+	}
+	</style>
+</div>
+

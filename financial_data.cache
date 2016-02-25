@@ -1,0 +1,86 @@
+{
+"list" : { 
+"meta" : { 
+"type" : "resource-list",
+"start" : 0,
+"count" : 5
+},
+"resources" : [ 
+{
+"resource" : { 
+"classname" : "Quote",
+"fields" : { 
+"name" : "Alphabet Inc.",
+"price" : "697.062988",
+"symbol" : "GOOG",
+"ts" : "1456413754",
+"type" : "equity",
+"utctime" : "2016-02-25T15:22:34+0000",
+"volume" : "468429"
+}
+}
+}
+,
+{
+"resource" : { 
+"classname" : "Quote",
+"fields" : { 
+"name" : "Apple Inc.",
+"price" : "95.629997",
+"symbol" : "AAPL",
+"ts" : "1456413772",
+"type" : "equity",
+"utctime" : "2016-02-25T15:22:52+0000",
+"volume" : "6054245"
+}
+}
+}
+,
+{
+"resource" : { 
+"classname" : "Quote",
+"fields" : { 
+"name" : "Facebook, Inc.",
+"price" : "106.455002",
+"symbol" : "FB",
+"ts" : "1456413773",
+"type" : "equity",
+"utctime" : "2016-02-25T15:22:53+0000",
+"volume" : "6946026"
+}
+}
+}
+,
+{
+"resource" : { 
+"classname" : "Quote",
+"fields" : { 
+"name" : "Amazon.com, Inc.",
+"price" : "553.331970",
+"symbol" : "AMZN",
+"ts" : "1456413759",
+"type" : "equity",
+"utctime" : "2016-02-25T15:22:39+0000",
+"volume" : "958127"
+}
+}
+}
+,
+{
+"resource" : { 
+"classname" : "Quote",
+"fields" : { 
+"name" : "Microsoft Corporation",
+"price" : "51.107201",
+"symbol" : "MSFT",
+"ts" : "1456413769",
+"type" : "equity",
+"utctime" : "2016-02-25T15:22:49+0000",
+"volume" : "5477905"
+}
+}
+}
+
+]
+}
+}
